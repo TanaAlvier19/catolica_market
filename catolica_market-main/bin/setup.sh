@@ -1,6 +1,6 @@
 #!/bin/bash
 PROJECTO=$(pwd)
-# OBJECTIVO= CRIAÇÃO DE GRUPOS, UTILIZADORES E PERMISSSÕES 
+# OBJECTIVO=CRIAÇÃO DE GRUPOS, UTILIZADORES E PERMISSSÕES 
 
 # Criando grupos 
 sudo groupadd -f admin
