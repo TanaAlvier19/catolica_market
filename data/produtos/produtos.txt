@@ -1,0 +1,24 @@
+PRD-00001;Arroz Tio Lucas 5kg;Alimentacao;2500.00;150;20;01-05-2026
+PRD-00002;Óleo Girassol 1L;Alimentacao;1800.00;80;10;01-05-2026
+PRD-00003;Detergente;Limpeza;1200.00;45;15;02-05-2026
+PRD-00004;Sabonete;Higiene;350.00;200;30;02-05-2026
+PRD-00005;Coca-Cola 2L;Bebidas;950.00;120;25;03-05-2026
+PRD-00006;Feijão Preto 1kg;Alimentacao;800.00;90;10;03-05-2026
+PRD-00007;Água Mineral 1.5L;Bebidas;400.00;300;50;04-05-2026
+PRD-00008;Shampoo Anticaspa;Higiene;2150.00;35;5;04-05-2026
+PRD-00009;Bolacha Maria;Alimentacao;250.00;500;40;05-05-2026
+PRD-00010;Lixívia 2L;Limpeza;600.00;70;10;05-05-2026
+PRD-00011;Leite 1L;Alimentacao;1100.00;60;15;06-05-2026
+PRD-00012;Sumo cana joy;Alimentacao;750.00;110;20;06-05-2026
+PRD-00013;Amaciador de Roupa;Limpeza;1850.00;40;8;07-05-2026
+PRD-00014;Pasta de Dente;Higiene;420.00;180;25;07-05-2026
+PRD-00015;Cerveja Nocal;Bebidas;300.00;400;60;08-05-2026
+PRD-00016;Farinha de Trigo 2kg;Alimentacao;900.00;85;15;08-05-2026
+PRD-00017;Desinfetante Spray;Limpeza;2500.00;25;5;09-05-2026
+PRD-00018;Papel Higiénico;Higiene;1100.00;95;20;09-05-2026
+PRD-00019;Refrigerante Blue;Bebidas;850.00;130;30;10-05-2026
+PRD-00020;Açúcar 1kg;Alimentacao;650.00;200;30;10-05-2026
+PRD-00021;Desodorizante;Higiene;3200.00;30;10;11-05-2026
+PRD-00022;Monster Energy;Bebidas;550.00;50;15;11-05-2026
+PRD-00023;Arroz 10kg;Alimentacao;4800.00;40;8;12-05-2026
+PRD-00024;Esponja;Limpeza;150.00;300;50;12-05-2026

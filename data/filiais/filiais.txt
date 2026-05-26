@@ -1,0 +1,20 @@
+FIL-01;Católica Market Luanda;Luanda;192.168.10.1;Carlos Mendes;222123456;Sim
+FIL-02;Católica Market Belas;Belas;192.168.10.2;Ana Sofia Santos;222234567;Sim
+FIL-03;Católica Market Viana;Viana;192.168.10.3;Rui Pedro Costa;222345678;Sim
+FIL-04;Católica Market Talatona;Talatona;192.168.10.4;Carla Nunes;222456789;Sim
+FIL-05;Católica Market Cacuaco;Cacuaco;192.168.10.5;Ricardo Matos;222567890;Sim
+FIL-06;Católica Market Kilamba;Kilamba;192.168.10.6;Isabel Neves;222678901;Sim
+FIL-07;Católica Market Benfica;Benfica;192.168.10.7;Carlos Mendes;222789012;Sim
+FIL-08;Católica Market Caboledo;Caboledo;192.168.10.8;Carla Nunes;222890123;Não
+FIL-09;Católica Market Catete;Catete;192.168.10.9;Ana Sofia Santos;222901234;Sim
+FIL-10;Católica Market Dondo;Dondo;192.168.10.10;Ricardo Matos;222012345;Sim
+FIL-11;Católica Market Sumbe;Sumbe;192.168.10.11;Isabel Neves;222123456;Sim
+FIL-12;Católica Market Benguela;Benguela;192.168.10.12;Rui Pedro Costa;222234567;Sim
+FIL-13;Católica Market Lobito;Lobito;192.168.10.13;Carla Nunes;222345678;Sim
+FIL-14;Católica Market Huambo;Huambo;192.168.10.14;Carlos Mendes;222456789;Sim
+FIL-15;Católica Market Lubango;Lubango;192.168.10.15;Ana Sofia Santos;222567890;Sim
+FIL-16;Católica Market Namibe;Namibe;192.168.10.16;Isabel Neves;222678901;Não
+FIL-17;Católica Market Saurimo;Saurimo;192.168.10.17;Ricardo Matos;222789012;Sim
+FIL-18;Católica Market Malanje;Malanje;192.168.10.18;Carla Nunes;222890123;Sim
+FIL-19;Católica Market Uíge;Uíge;192.168.10.19;Rui Pedro Costa;222901234;Sim
+FIL-20;Católica Market Cabinda;Cabinda;192.168.10.20;Carlos Mendes;222012345;Sim
