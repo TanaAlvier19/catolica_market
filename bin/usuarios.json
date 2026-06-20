@@ -1,0 +1,12 @@
+{
+  "123": {
+    "nome": "João do Caixa",
+    "senha": "mudar123",
+    "cargo": "operador"
+  },
+  "124": {
+    "nome": "Maria do Estoque",
+    "senha": "senha456",
+    "cargo": "gerente"
+  }
+}

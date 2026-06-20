@@ -1,1 +1,3 @@
-#funções reutilizáveis por todos os scripts
+
+interface() { whiptail "$@" 3>&1 1>&2 2>&3; }
+

@@ -1,0 +1,4 @@
+# id; grupo; nome; filiar; senha; utilizador_linux; 
+1008;cm_atendentes; Joao; filiar_benguela;123
+1009;cm_gerentes;Antonio;filiar_luanda;123
+1012;cm_gerentes;Lucas;filiar_huambo;123

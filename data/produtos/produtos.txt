@@ -1,0 +1,7 @@
+#codigo, nome,categoria,preço, quantidade, estoque_minimo, data_cadastro 
+
+ban12;Banana;Frutas;100;12;12;01/06/2026;
+ba;Arroz;12;12;12;13;01/06/2026;
+;Batata;Fruta;200;12;13;02/06/2026;
+;Tomate;Pre;12;123;71;02/06/2026;
+PD12;Banana;Frutas;500;12;12;15/06/2026;
