@@ -1,5 +1,5 @@
-arquivo="backup.sh"
-
+#!/bin/bash
+arquivo="manutencao.sh"
 #Função que programa a execução automática de um script
 confCron()
 {
@@ -9,10 +9,7 @@ confCron()
     echo "Código de retorno: $?"
 }
 
-# definir execução automática para o backup
+# definir execução automática para o manutencao
 confCron "$arquivo"
 
-# definir execução automática para o manutencao
-arquivo="manutencao.sh"
-confCron "$arquivo"
 exit 1
