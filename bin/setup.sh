@@ -78,4 +78,4 @@ menu_funcionarios() {
         esac
     done
 }
-
+source /opt/catolica_market/config/cron.sh
