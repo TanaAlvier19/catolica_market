@@ -1,9 +1,20 @@
 #!/bin/bash
-BACKUP_DIR="/home/labex/project/backup"
-mkdir -p $BACKUP_DIR
-DATE=$(date +%Y-%m-%d)
-BACKUP_FILE="$BACKUP_DIR/logs_backup_$DATE.tar.gz"
-sudo tar -czf $BACKUP_FILE /opt/catolica_market/data/ 2>/dev/null
-sudo chown labex:labex $BACKUP_FILE
-chmod 644 $BACKUP_FILE
-echo "Log backup created: $BACKUP_FILE"
+backup_source="/opt/catolica_market/data/"
+
+backup_dest="/mnt/backup"
+
+data_log=$(date +%Y-%m-%d-%H:%M:%S )
+data=$(date +%Y-%m-%d--%H-%M-%S)
+nome_arq="backup-$data.tar.gz"
+backup_log="/opt/catolica_market/data/logs/log.log"
+
+if ! mountpoint -q -- $backup_dest; then
+	printf "$data_log Dispositivo não montado\n" >> $backup_log
+	exit 1
+else	
+	if tar -czSpf "$backup_dest/$nome_arq" "$backup_source" >> $backup_log; then
+		printf "$data_log Backup bem sucedido\n" >> $backup_log
+	else
+	 	printf "$data_log Erro ao fazer backup\n" >> $backup_log
+	 fi	
+fi
