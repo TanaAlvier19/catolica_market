@@ -57,6 +57,7 @@ menu_funcionario()
 
 
 obter_ip_disponivel() {
+ARQUIVO_IPS="/opt/catolica_market/data/ips/ips.txt"
     local filial="$1"
 
     local ip
