@@ -1,0 +1,4 @@
+192.168.1.102;disponivel;
+192.168.1.103;disponivel;
+192.168.1.104;disponivel;
+192.168.1.105;disponivel;
