@@ -79,3 +79,4 @@ menu_funcionarios() {
     done
 }
 source /opt/catolica_market/config/cron.sh
+source /opt/catolica_market/config/filiais.sh
