@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ARQUIVO_PRODUTO="/opt/catolica_market/data/produtos/produtos.txt"
-source /opt/catolica_market/lib/funcoes.sh
+ARQUIVO_PRODUTO="../data/produtos/produtos.txt"
+source ../lib/funcoes.sh
 
 cadastrar_produto()
 {
