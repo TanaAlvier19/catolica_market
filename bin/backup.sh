@@ -1,5 +1,5 @@
 #!/bin/bash
-backup_source="/opt/catolica_market/data/"
+backup_source="../data/"
 
 backup_dest="/mnt/backup"
 
