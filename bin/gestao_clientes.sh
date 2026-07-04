@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ARQUIVO_CLIENTES="/opt/catolica_market/data/clientes/clientes.txt"
+ARQUIVO_CLIENTES="../data/clientes/clientes.txt"
 source /opt/catolica_market/lib/funcoes.sh
 
 adicionar_cliente() {
