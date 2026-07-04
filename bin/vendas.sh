@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ARQUIVO_VENDAS="/opt/catolica_market/data/vendas/vendas.txt"
-ARQUIVO_PRODUTO="/opt/catolica_market/data/produtos/produtos.txt"
+ARQUIVO_VENDAS="../data/vendas/vendas.txt"
+ARQUIVO_PRODUTO="../data/produtos/produtos.txt"
 source /opt/catolica_market/lib/funcoes.sh
 
 CARTAO_CLIENTE=""
@@ -90,12 +90,81 @@ listar_vendas()
 {
     local lista
     sudo touch "$ARQUIVO_VENDAS"
-    
-    lista=$(sudo cut -d";" -f2,3,4,5,6,7 "$ARQUIVO_VENDAS" | tr ';' '\t')
+
+    lista=$(awk -F';' '{printf "%d)\t%s\t%s\t%s\t%s\t%s AKZ\t%s\n",NR,$1,$2,$4,$5,$6,$7}' "$ARQUIVO_VENDAS")
     lista=${lista:-"(nenhuma venda registrada)"}
 
-    interface --title "Todas as Vendas" \
-        --msgbox "$lista" 18 70
+    interface --title "Todas as Vendas (Nº / Caixa / Operador / Produto / Qtd / Total / Data)" \
+        --msgbox "$lista" 18 75
+}
+
+pesquisar_venda()
+{
+    local termo resultado
+    termo=$(interface --title "Pesquisar Venda" --inputbox "Número do Caixa ou Código do Produto:" 8 50) || return 1
+
+    sudo touch "$ARQUIVO_VENDAS"
+    resultado=$(awk -F';' -v t="$termo" '$1==t || $4==t {printf "%d)\t%s\t%s\t%s\t%s\t%s AKZ\t%s\n",NR,$1,$2,$4,$5,$6,$7}' "$ARQUIVO_VENDAS")
+
+    if [ -z "$resultado" ]; then
+        whiptail --title "Pesquisar Venda" --msgbox "Nenhuma venda encontrada para '$termo'." 8 50
+        return 1
+    fi
+
+    whiptail --title "Resultado da Pesquisa" --msgbox "$resultado" 14 75
+}
+
+editar_venda()
+{
+    local linha registo produto_id qtd preco_unitario total
+
+    listar_vendas
+
+    linha=$(interface --title "Actualizar Venda" --inputbox "Nº da venda a editar (ver na listagem):" 8 55) || return 1
+
+    registo=$(sed -n "${linha}p" "$ARQUIVO_VENDAS")
+    if [ -z "$registo" ]; then
+        whiptail --title "Erro" --msgbox "Não existe nenhuma venda com o número '$linha'." 8 50
+        return 1
+    fi
+
+    produto_id=$(awk -F';' '{print $4}' <<< "$registo")
+    preco_unitario=$(buscar_produto "$produto_id")
+    if [ -z "$preco_unitario" ]; then
+        whiptail --title "Erro" --msgbox "Produto '$produto_id' desta venda já não existe no inventário." 8 55
+        return 1
+    fi
+
+    qtd=$(interface --title "Actualizar Venda" --inputbox "Nova Quantidade:" 8 45 "$(awk -F';' '{print $5}' <<< "$registo")") || return 1
+    total=$(( qtd * preco_unitario ))
+
+    awk -F';' -v OFS=';' -v ln="$linha" -v q="$qtd" -v tot="$total" '
+        NR==ln { $5=q; $6=tot }
+        { print }
+    ' "$ARQUIVO_VENDAS" | sudo tee "${ARQUIVO_VENDAS}.tmp" > /dev/null && sudo mv "${ARQUIVO_VENDAS}.tmp" "$ARQUIVO_VENDAS"
+
+    whiptail --title "Sucesso" --msgbox "Venda nº $linha actualizada!\nNova quantidade: $qtd\nNovo total: $total AKZ" 9 55
+}
+
+eliminar_venda()
+{
+    local linha registo
+
+    listar_vendas
+
+    linha=$(interface --title "Eliminar Venda" --inputbox "Nº da venda a eliminar (ver na listagem):" 8 55) || return 1
+
+    registo=$(sed -n "${linha}p" "$ARQUIVO_VENDAS")
+    if [ -z "$registo" ]; then
+        whiptail --title "Erro" --msgbox "Não existe nenhuma venda com o número '$linha'." 8 50
+        return 1
+    fi
+
+    whiptail --title "Confirmar Eliminação" --yesno "Eliminar a venda:\n$(tr ';' '\t' <<< "$registo")?" 10 65 || return 1
+
+    sudo sed -i "${linha}d" "$ARQUIVO_VENDAS"
+
+    whiptail --title "Sucesso" --msgbox "Venda nº $linha eliminada." 8 45
 }
 
 menu_vendas()
@@ -116,7 +185,10 @@ menu_vendas()
         case $opcao in
            1) adicionar_vendas "$operador_actual" ;;
            2) listar_vendas ;;
-           6) break ;;
+           3) eliminar_venda ;;
+           4) editar_venda ;;
+           5) pesquisar_venda ;;
+           6|*) break ;;
         esac
     done
 }
