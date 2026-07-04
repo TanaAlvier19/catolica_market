@@ -2,32 +2,40 @@
 
 PASTA_MONTAGEM="/mnt/catolica_market"
 
-echo "Instalando ferramentas cliente..."
+sincronizar_com_central()
+{
+    echo "A preparar sincronização com a central..."
+    sudo apt-get update -qq
+    sudo apt-get install -y cifs-utils samba-client >/dev/null 2>&1
 
-sudo apt update
-sudo apt install -y cifs-utils samba-client
+    sudo mkdir -p "$PASTA_MONTAGEM"
 
-sudo mkdir -p "$PASTA_MONTAGEM"
+    if mountpoint -q "$PASTA_MONTAGEM"; then
+        echo "Partilha da central já está montada em $PASTA_MONTAGEM."
+        return 0
+    fi
 
-echo "A procurar servidor automaticamente..."
+    echo "A procurar o servidor da central automaticamente..."
+    SERVIDOR=$(nmblookup catolica-market 2>/dev/null | awk '/^[0-9]/{print $1}' | head -n 1)
 
-SERVIDOR=$(nmblookup catolica-market 2>/dev/null | awk '/^[0-9]/{print $1}' | head -n 1)
+    if [ -z "$SERVIDOR" ]; then
+        echo "Servidor não encontrado automaticamente. A usar nome NetBIOS 'catolica-market'."
+        SERVIDOR="catolica-market"
+    fi
 
-if [ -z "$SERVIDOR" ]; then
-    echo "Servidor não encontrado automaticamente."
-    echo "A usar nome NetBIOS..."
-    SERVIDOR="catolica-market"
-fi
+    echo "Servidor: $SERVIDOR"
+    echo "A montar partilha da central com permissões de escrita..."
 
-echo "Servidor: $SERVIDOR"
+    sudo mount -t cifs "//$SERVIDOR/catolica_market" "$PASTA_MONTAGEM" \
+        -o guest,rw,file_mode=0777,dir_mode=0777
 
-echo "Montando partilha com permissões de escrita..."
+    if [ $? -eq 0 ]; then
+        echo "Sincronização com a central concluída (montada em $PASTA_MONTAGEM)."
+        return 0
+    else
+        echo "Erro ao sincronizar com a central."
+        return 1
+    fi
+}
 
-sudo mount -t cifs //$SERVIDOR/catolica_market "$PASTA_MONTAGEM" \
-    -o guest,rw,file_mode=0777,dir_mode=0777
-
-if [ $? -eq 0 ]; then
-    echo "Montagem concluída com escrita total!"
-else
-    echo "Erro ao montar partilha."
-fi
+sincronizar_com_central
