@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ARQUIVO_Filiais="/opt/catolica_market/data/filiais/filiais.txt"
-source /opt/catolica_market/lib/funcoes.sh
+ARQUIVO_Filiais="../data/filiais/filiais.txt"
+source ../lib/funcoes.sh
 
 cadastrar_filial()
 {
