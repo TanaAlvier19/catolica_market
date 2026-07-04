@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ARQUIVO_FUNCIONARIOS="/opt/catolica_market/data/funcionarios/funcionarios.txt"
+ARQUIVO_FUNCIONARIOS="../data/funcionarios/funcionarios.txt"
 source /opt/catolica_market/lib/funcoes.sh
 
 cadastrar_funcionario()
