@@ -1,9 +1,10 @@
 #!/bin/bash
-source /opt/catolica_market/lib/funcoes.sh
-source /opt/catolica_market/bin/gestao_funcionarios.sh
-source /opt/catolica_market/bin/gestao_produtos.sh
-source /opt/catolica_market/bin/gestao_clientes.sh
-source /opt/catolica_market/bin/vendas.sh
+source ../lib/funcoes.sh
+source ../gestao_funcionarios.sh
+source ../gestao_produtos.sh
+source ../gestao_clientes.sh
+source ../gestao_filiais.sh
+source ../vendas.sh
 
 menu_atendente()
 {
@@ -59,17 +60,19 @@ menu_admin()
 {
  	local opcao
 	opcao=$(interface --title "CATÓLICA MARKET  MENU PRINICIPAL" \
-        	--menu "Escolha uma das opções abaixo" 15 50 5 \
+        	--menu "Escolha uma das opções abaixo" 16 55 5 \
         	"1" "Menu Operacional" \
         	"2" "Menu de Gerencia" \
         	"3" "Backups" \
         	"4" "Manutenção" \
+        	"5" "Gestão de Filiais" \
         	)
             case $opcao in
                 1) menu_atendente "$operador";;
                 2) menu_gerentes "$operador" ;;
                 3) menu_produto "$operador" ;;
                 4) menu_cliente "$operador" ;;
+                5) menu_filial "$operador" ;;
             esac
 }
 
